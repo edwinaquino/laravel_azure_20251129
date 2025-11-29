@@ -1,0 +1,91 @@
+PREVIOUS VERSION
+F:\apachefriends\xampp\htdocs\DOCKER\helloworld-azure\simple_php_azure_deployment
+
+Laravel + Azure_ Full CI_CD Pipeline Setup (2025) - YouTube
+VIDEO: https://www.youtube.com/watch?v=Zx2aP7DWEmM
+
+1. Create VSCODE Project
+
+mkdir "F:\apachefriends\xampp\htdocs\DOCKER\laravel_azure_20251129"
+cd "F:\apachefriends\xampp\htdocs\DOCKER\laravel_azure_20251129"
+code .
+code .gitignore
+code MYNOTES-20251129.txt
+############# MYNOTES-20251129.txt###########
+# this is for main project root, outside 'src' folder
+MYNOTES-20251129.txt 
+
+# Ignore common IDE and OS files
+.idea/
+.vscode/
+.DS_Store
+*.swp
+*.swo
+################################################
+
+2. Create GIT REPOSITORY in github.com
+https://github.com/edwinaquino/laravel_azure_20251129
+
+git init
+git add .
+git commit -m "ini"
+git remote add origin https://github.com/edwinaquino/laravel_azure_20251129.git
+git branch -M main
+git push -u origin main
+
+https://youtu.be/Zx2aP7DWEmM?si=w9zwH-OEpcqRbDA4&t=111
+
+#DOWNLOAD FILES USING GITBASH:
+mkdir src
+curl -O https://raw.githubusercontent.com/lemukarram/laravel_azure/refs/heads/master/app.Dockerfile
+curl -O https://raw.githubusercontent.com/lemukarram/laravel_azure/refs/heads/master/docker-compose.yml
+curl -O https://raw.githubusercontent.com/lemukarram/laravel_azure/refs/heads/master/nginx.conf
+curl -O https://raw.githubusercontent.com/lemukarram/laravel_azure/refs/heads/master/nginx.prod.conf
+curl -O https://raw.githubusercontent.com/lemukarram/laravel_azure/refs/heads/master/start-prod.sh
+
+code app.Dockerfile
+# REMOVE "version: '3.8'" line
+code docker-compose.yml
+
+https://youtu.be/Zx2aP7DWEmM?si=yN5pG-k1dmMeRWfJ&t=184
+
+git add .
+git commit -m "added setup docker files"
+git push -u origin main
+
+3. DOCKER
+MAKE SURE DOCKER IS RUNNING> START DOCKER DESKTOP IF YOU HAVE IT INSTALLED
+# NOTE. sometimes may take like 15 secods for docker desktop to start.
+$ docker-compose up -d --build
+$ docker compose up -d
+
+
+4. LARAVEL 
+https://youtu.be/Zx2aP7DWEmM?si=eeIVWuI-WmFSlQVr&t=220
+# create laravel app inside the src folder
+docker-compose exec app composer create-project laravel/laravel .
+
+ERROR: "Project directory "/var/www/html/." is not empty."
+TRY AGAIN: AI GAVE ME THIS COMMAND:
+Remove-Item ".\src\.gitignore" -Force; docker-compose exec app composer create-project laravel/laravel .
+
+4. OPEN IN BROWSER:
+http://localhost:8000
+
+ERROR: 
+SQLSTATE[HY000]: General error: 8 attempt to write a readonly database (Connection: sqlite, SQL: update "sessions" set "payload
+SOLUTION: the solution was on line 27 of app.Dockerfile.yaml for some reason it did not not chmod:
+RUN chown -R www-data:www-data /var/www/html
+So I deleted the container with docker image and rebuilt it wih the previous command:
+docker-compose up -d --build
+Now I can see the laravel home welcome page.
+
+
+git add .
+git commit -m "setup laravel"
+git push -u origin main
+
+https://youtu.be/Zx2aP7DWEmM?si=UbOspQKrJKAp_dm_&t=241
+
+
+

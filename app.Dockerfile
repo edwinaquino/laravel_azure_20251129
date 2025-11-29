@@ -64,7 +64,7 @@ RUN php artisan config:cache && \
     php artisan event:cache
 
 # Set correct permissions for production
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache 
 
 # Expose port 80 for Nginx (this is what Azure will connect to)
 EXPOSE 80

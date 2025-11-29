@@ -1,9 +1,0 @@
-# this is for main project root, outside 'src' folder
-MYNOTES-20251129.txt 
-
-# Ignore common IDE and OS files
-.idea/
-.vscode/
-.DS_Store
-*.swp
-*.swo
