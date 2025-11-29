@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # PHP-FPM Service (Our Laravel App)
+  app:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+      target: development # Use the 'development' stage from our Dockerfile
+    volumes:
+      - ./src:/var/www/html # Mount our local 'src' directory into the container
+    networks:
+      - laravel-net
+
+  # Nginx Service (Web Server)
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - "8000:80" # Map host port 8000 to container port 80
+    volumes:
+      # FIX: Mount our config to conf.d, not the main nginx.conf
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./src:/var/www/html # Share the src volume so Nginx can access public files
+    depends_on:
+      - app
+    networks:
+      - laravel-net
+
+  # MySQL Service (Database)
+  db:
+    image: mysql:8.0
+    ports:
+      - "33066:3306" # Map host port 33066 to container port 3306 (to avoid local conflicts)
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel_user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - db-data:/var/lib/mysql # Persist database data
+    networks:
+      - laravel-net
+
+# Define our custom network
+networks:
+  laravel-net:
+    driver: bridge
+
+# Define our persistent volume
+volumes:
+  db-data:
+    driver: local
