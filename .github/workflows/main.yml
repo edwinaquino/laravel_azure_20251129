@@ -18,7 +18,7 @@ env:
   AZURE_CONTAINER_REGISTRY: 'laravelazure20251129acr' 
   
   # 3. This is a name for your image in the registry
-  IMAGE_NAME: '20251129-image'       
+  IMAGE_NAME: 'latest01'       
   # ====================================================
 
 
