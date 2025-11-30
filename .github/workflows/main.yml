@@ -14,8 +14,8 @@ env:
   # 1. Your new Azure App Service name
   AZURE_WEB_APP_NAME: 'laravel_azure_20251129_app' 
   
-  # 2. Your Azure Container Registry (ACR) name
-  AZURE_CONTAINER_REGISTRY: 'laravel_azure_20251129_rg' 
+  # 2. Your Azure Container Registry (ACR) name (without .azurecr.io)
+  AZURE_CONTAINER_REGISTRY: 'laravelazure20251129acr' 
   
   # 3. This is a name for your image in the registry
   IMAGE_NAME: '20251129-image'       

@@ -16,8 +16,6 @@ FROM composer:2.7 AS composer
 # --- Development Stage (default) ---
 # This is what docker-compose will use
 FROM base AS development
-# The ARG instruction was missing here in the previous version
-ARG TARGETPLATFORM=${BUILDPLATFORM:-linux/amd64}
 
 # Copy composer in
 COPY --from=composer /usr/bin/composer /usr/bin/composer
@@ -30,8 +28,6 @@ RUN chown -R www-data:www-data /var/www/html
 # This is what our CI/CD will build.
 # It now includes Nginx AND php-fpm in one image.
 FROM base AS prod
-# The ARG instruction was missing here in the previous version
-ARG TARGETPLATFORM=${BUILDPLATFORM:-linux/amd64}
 
 # --- Install Production Dependencies ---
 # Install Nginx and other utilities
