@@ -12,7 +12,7 @@ env:
   # === VARIABLES UPDATED BASED ON YOUR NEW SERVICES ===
   
   # 1. Your new Azure App Service name
-  AZURE_WEB_APP_NAME: 'laravel_azure_20251129_app' 
+  AZURE_WEB_APP_NAME: 'laravel-azure-20251129-app' 
   
   # 2. Your Azure Container Registry (ACR) name (without .azurecr.io)
   AZURE_CONTAINER_REGISTRY: 'laravelazure20251129containerrigestry' 
