@@ -53,12 +53,6 @@ RUN chmod +x /usr/local/bin/start-prod.sh
 # Install composer dependencies
 RUN composer install --no-interaction --no-dev --optimize-autoloader
 
-# Optimize Laravel for production
-RUN php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache && \
-    php artisan event:cache
-
 # Set correct permissions for production
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache 
 
