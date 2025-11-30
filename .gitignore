@@ -1,0 +1,10 @@
+
+./MYNOTES-20251129.txt
+/NOTES/*
+
+# Ignore common IDE and OS files
+.idea/
+.vscode/
+.DS_Store
+*.swp
+*.swo
